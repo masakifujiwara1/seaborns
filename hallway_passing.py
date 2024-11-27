@@ -5,20 +5,21 @@ import numpy as np
 
 # データの準備
 data = {
-    'Category': ['Execution Time', 'Execution Time', 'Execution Dist', 'Execution Dist', 'Min.Dist. Person1', 'Min.Dist. Person1', 'Min.TTC', 'Min.TTC'],
-    'Group': ['A', 'B', 'A', 'B', 'A', 'B', 'A', 'B'],
-    'Value': [15.10, 23.18, 7.46, 7.52, 0.11, 1.16, 0.18, 3.13],
-    'Error': [0.058, 10.4, 0.017, 0.1, 0.018, 0.5, 0.031, 1.5]
+    'Category': ['Execution Time', 'Execution Time', 'Execution Dist', 'Execution Dist', 'Min.Dist. Person1', 'Min.Dist. Person1', 'Min.Dist. Person2', 'Min.Dist. Person2', 'Min.TTC Person1', 'Min.TTC Person1', 'Min.TTC Person2', 'Min.TTC Person2'],
+    'Group': ['Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction'],
+    'Value': [16.50, 27.64, 6.66, 6.83, 0.38, 0.74, 1.02, 0.83, 1.16, 1.65, 1.76, 1.84],
+    'Error': [0.687, 6.8, 0.054, 0.1, 0.018, 0.2, 0.021, 0.3, 0.126, 0.3, 0.031, 0.6]
 }
 df = pd.DataFrame(data)
 
 # グラフの作成
-fig, axes = plt.subplots(1, 4, figsize=(7, 4))
+fig, axes = plt.subplots(1, 6, figsize=(9, 4))
 
-categories = ['Execution Time', 'Execution Dist', 'Min.Dist. Person1', 'Min.TTC']
-ylabels = ['[s]', '[m]', '[m]', '[s]']
+categories = ['Execution Time', 'Execution Dist', 'Min.Dist. Person1', 'Min.Dist. Person2', 'Min.TTC Person1', 'Min.TTC Person2']
+ylabels = ['[s]', '[m]', '[m]', '[m]', '[s]', '[s]']
 edgecolors = ['blue', 'red']  # 縁の色を定義
 errorbar_colors = ['blue', 'red'] # エラーバーの色を定義
+ylim_values = [None, None, (0, 1.5), (0, 1.5), (0, 2.5), (0, 2.5)] 
 
 for i, category in enumerate(categories):
     ax = axes[i]
@@ -37,15 +38,17 @@ for i, category in enumerate(categories):
         patch.set_alpha(0.3) # 塗りつぶしのalpha値
 
     # エラーバーを手動で追加
-    for j, group in enumerate(['A','B']):
+    for j, group in enumerate(['Normal','Prediction']):
       value = df[(df['Category'] == category) & (df['Group'] == group)]['Value'].values[0]
       error = df[(df['Category'] == category) & (df['Group'] == group)]['Error'].values[0]
       ax.errorbar(x=j, y=value, yerr=error, color=errorbar_colors[j], capsize=5, capthick=1)
 
     ax.set_xlabel(category.replace(' ', '\n'), fontsize=12)
     ax.set_ylabel(ylabels[i], fontsize=12)
+    if not(ylim_values[i] == None):
+        ax.set_ylim(ylim_values[i])
     ax.set_xticks([0, 1])
-    ax.set_xticklabels(['A', 'B'])  # x軸の目盛りラベルを修正
+    ax.set_xticklabels(['Normal', 'Prediction'])  # x軸の目盛りラベルを修正
 
 
 plt.tight_layout()
