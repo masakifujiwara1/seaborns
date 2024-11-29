@@ -13,13 +13,13 @@ data = {
 df = pd.DataFrame(data)
 
 # グラフの作成
-fig, axes = plt.subplots(1, 6, figsize=(9, 4))
+fig, axes = plt.subplots(1, 6, figsize=(10, 4))
 
 categories = ['Execution Time', 'Execution Dist', 'Min.Dist. Person1', 'Min.Dist. Person2', 'Min.TTC Person1', 'Min.TTC Person2']
 ylabels = ['[s]', '[m]', '[m]', '[m]', '[s]', '[s]']
 edgecolors = ['blue', 'red']  # 縁の色を定義
 errorbar_colors = ['blue', 'red'] # エラーバーの色を定義
-ylim_values = [None, None, (0, 1.5), (0, 1.5), (0, 2.5), (0, 2.5)] 
+ylim_values = [(0, 35), (0, 8), (0, 2.0), (0, 2.0), (0, 5.0), (0, 5.0)] 
 
 for i, category in enumerate(categories):
     ax = axes[i]
