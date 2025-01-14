@@ -7,19 +7,19 @@ import numpy as np
 data = {
     'Category': ['Execution Time', 'Execution Time', 'Execution Dist', 'Execution Dist', 'Min.Dist. Person1', 'Min.Dist. Person1', 'Min.TTC', 'Min.TTC'],
     'Group': ['Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction'],
-    'Value': [15.10, 23.18, 7.46, 7.52, 0.11, 1.16, 0.18, 3.13],
-    'Error': [0.058, 10.4, 0.017, 0.1, 0.018, 0.5, 0.031, 1.5]
+    'Value': [15.10, 27.24, 7.46, 7.57, 0.11, 1.43, 0.18, 3.06],
+    'Error': [0.058, 12.86, 0.017, 0.07, 0.018, 0.78, 0.031, 1.68]
 }
 df = pd.DataFrame(data)
 
 # グラフの作成
-fig, axes = plt.subplots(1, 4, figsize=(10, 4))
+fig, axes = plt.subplots(1, 4, figsize=(10, 6))
 
 categories = ['Execution Time', 'Execution Dist', 'Min.Dist. Person1', 'Min.TTC']
 ylabels = ['[s]', '[m]', '[m]', '[s]']
 edgecolors = ['blue', 'red']  # 縁の色を定義
-errorbar_colors = ['blue', 'red'] # エラーバーの色を定義
-ylim_values = [(0, 35), (0, 8), (0, 2.0), (0, 5.0)] 
+errorbar_colors = ['darkblue', 'darkred'] # エラーバーの色を定義
+ylim_values = [(0, 42), (0, 8), (0, 2.8), (0, 5.0)] 
 
 for i, category in enumerate(categories):
     ax = axes[i]

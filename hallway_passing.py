@@ -7,19 +7,19 @@ import numpy as np
 data = {
     'Category': ['Execution Time', 'Execution Time', 'Execution Dist', 'Execution Dist', 'Min.Dist. Person1', 'Min.Dist. Person1', 'Min.Dist. Person2', 'Min.Dist. Person2', 'Min.TTC Person1', 'Min.TTC Person1', 'Min.TTC Person2', 'Min.TTC Person2'],
     'Group': ['Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction', 'Normal', 'Prediction'],
-    'Value': [16.50, 27.64, 6.66, 6.83, 0.38, 0.74, 1.02, 0.83, 1.16, 1.65, 1.76, 1.84],
-    'Error': [0.687, 6.8, 0.054, 0.1, 0.018, 0.2, 0.021, 0.3, 0.126, 0.3, 0.031, 0.6]
+    'Value': [16.50, 24.39, 6.66, 6.75, 0.38, 0.70, 1.02, 0.90, 1.16, 1.56, 1.76, 1.90],
+    'Error': [0.687, 3.88, 0.054, 0.08, 0.018, 0.22, 0.021, 0.26, 0.126, 0.29, 0.031, 0.46]
 }
 df = pd.DataFrame(data)
 
 # グラフの作成
-fig, axes = plt.subplots(1, 6, figsize=(10, 4))
+fig, axes = plt.subplots(1, 6, figsize=(12, 6))
 
 categories = ['Execution Time', 'Execution Dist', 'Min.Dist. Person1', 'Min.Dist. Person2', 'Min.TTC Person1', 'Min.TTC Person2']
 ylabels = ['[s]', '[m]', '[m]', '[m]', '[s]', '[s]']
 edgecolors = ['blue', 'red']  # 縁の色を定義
 errorbar_colors = ['blue', 'red'] # エラーバーの色を定義
-ylim_values = [(0, 35), (0, 8), (0, 2.0), (0, 2.0), (0, 5.0), (0, 5.0)] 
+ylim_values = [(0, 42), (0, 8), (0, 2.8), (0, 2.8), (0, 5.0), (0, 5.0)] 
 
 for i, category in enumerate(categories):
     ax = axes[i]
